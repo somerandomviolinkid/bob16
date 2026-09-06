@@ -88,8 +88,8 @@ any unused bits in a machine code instruction will be set to 0\
 strings are NOT packed!!!\
 pc is *always* incremented at the start of execution, so instructions that change or use pc such as jmp will use the incremented pc as the base\
 sext stands for sign extend and not anything else\
-you MUST include trap 0 to halt the program somewhere or else it'll crash
+you MUST include trap 0 to halt the program somewhere or else it'll crash\
 condition codes are set after instructions with *, so if the result of an instruction with an * is:\
 negative 	-> n bit is set\
 zero 		-> z bit is set\
-positive	-> p bit is set\
+positive	-> p bit is set
