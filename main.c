@@ -246,7 +246,7 @@ void execute() {
 					cpu.alu.accumulator = cpu.regFile[(cpu.ir >> 4) & 0x7] & cpu.regFile[(cpu.ir >> 1) & 0x7];
 					break;
 				case 1:
-					cpu.alu.accumulator = cpu.regFile[(cpu.ir >> 4) & 0x7] & sext(cpu.ir & 0x1, 4);
+					cpu.alu.accumulator = cpu.regFile[(cpu.ir >> 4) & 0x7] & sext(cpu.ir & 0xF, 4);
 					break;
 				case 2:
 					if (cpu.ir & 0x1F) {
@@ -788,11 +788,11 @@ int assemble() {
 
 			int conditionCodes = 0;
 			for (int i = 0; i < l; i++) {
-				if (tokens[2][i] == 'n') {
+				if (tokens[1][i] == 'n') {
 					conditionCodes |= 0b100;
-				} else if (tokens[2][i] == 'z') {
+				} else if (tokens[1][i] == 'z') {
 					conditionCodes |= 0b010;
-				} else if (tokens[2][i] == 'p') {
+				} else if (tokens[1][i] == 'p') {
 					conditionCodes |= 0b001;
 				}
 			}
@@ -854,7 +854,7 @@ int assemble() {
 				return -4;
 			}
 
-			int r0 = parseReg(tokens[2]);
+			int r0 = parseReg(tokens[1]);
 			if (r0 == -1) {
 				printf("Wrong tokens on line %d!\n", lineCount);
 				return -3;
