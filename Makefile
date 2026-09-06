@@ -1,3 +1,3 @@
 all:
-  gcc main.c -o main
-  ./main
+	gcc main.c -o main.exe
+	./main.exe
