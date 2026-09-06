@@ -104,7 +104,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef uint16_t reg_t;
+typedef int16_t reg_t;
 
 typedef enum INSTRUCTION_E {
 	NOP,
@@ -151,7 +151,7 @@ struct cpu_t {
 } cpu;
 
 struct ram_t {
-	uint16_t memory[0x10000];
+	int16_t memory[0x10000];
 	reg_t mar;
 	reg_t mdr;
 } ram;
@@ -161,20 +161,10 @@ int sext(uint16_t val, uint16_t length) {
 	return (val << n) >> n;
 }
 
-void updateCC(uint16_t val) {
-	if (val < 0) {
-		cpu.cc[N] = true;
-		cpu.cc[Z] = false;
-		cpu.cc[P] = false;
-	} else if (val == 0) {
-		cpu.cc[N] = false;
-		cpu.cc[Z] = true;
-		cpu.cc[P] = false;
-	} else {
-		cpu.cc[N] = false;
-		cpu.cc[Z] = false;
-		cpu.cc[P] = true;
-	}
+void updateCC(int16_t val) {
+	cpu.cc[N] = val < 0;
+	cpu.cc[Z] = val == 0;
+	cpu.cc[P] = val > 0;
 }
 
 void fetch() {
@@ -246,7 +236,7 @@ void execute() {
 					cpu.alu.accumulator = cpu.regFile[(cpu.ir >> 4) & 0x7] & cpu.regFile[(cpu.ir >> 1) & 0x7];
 					break;
 				case 1:
-					cpu.alu.accumulator = cpu.regFile[(cpu.ir >> 4) & 0x7] & sext(cpu.ir & 0xF, 4);
+					cpu.alu.accumulator = cpu.regFile[(cpu.ir >> 4) & 0x7] & sext(cpu.ir & 0x1, 4);
 					break;
 				case 2:
 					if (cpu.ir & 0x1F) {
@@ -346,7 +336,7 @@ void execute() {
 					
 					cpu.pc = cpu.regFile[7];
 					break;
-				case GETS: ;
+				case GETS:
 					int n = cpu.regFile[1];
 					cpu.regFile[7] = cpu.pc;
 					char buf[n];
@@ -780,7 +770,7 @@ int assemble() {
 				return -4;
 			}
 
-			size_t l = strlen(tokens[2]);
+			size_t l = strlen(tokens[1]);
 			if (l > 3 || l == 0) {
 				printf("Wrong tokens on line %d!\n", lineCount);
 				return -3;
@@ -854,7 +844,7 @@ int assemble() {
 				return -4;
 			}
 
-			int r0 = parseReg(tokens[1]);
+			int r0 = parseReg(tokens[2]);
 			if (r0 == -1) {
 				printf("Wrong tokens on line %d!\n", lineCount);
 				return -3;
