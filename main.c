@@ -294,6 +294,8 @@ void execute() {
 						putchar(cpu.regFile[0] & 0xFF);
 						cpu.pc++;					
 					}
+
+					putchar('\n');
 					
 					cpu.pc = cpu.regFile[7];
 					break;
@@ -407,7 +409,7 @@ int assemble() {
 				return -4;
 			}
 
-			if (sscanf(tokens[1], "%x", &instruction) != 1) {
+			if (sscanf(tokens[1], "%hX", &instruction) != 1) {
 				printf("Wrong token on line %d!\n", lineCount);
 				return -3;
 			}
