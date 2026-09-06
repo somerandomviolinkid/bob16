@@ -474,6 +474,10 @@ int assemble() {
 			
 			ram.memory[instructionCount] = 0;
 			instructionCount++;
+			if (instructionCount > 0xFFFF) {
+				printf("Too many instructions!\n");
+				return -7;
+			}
 
 		} else if (strcmp(tokens[0], "add") == 0) {
 			instruction += (1 << 12);
@@ -915,6 +919,11 @@ int assemble() {
 
 		ram.memory[instructionCount] = instruction;
 		instructionCount++;
+		if (instructionCount > 0xFFFF) {
+			printf("Too many instructions!\n");
+			return -7;
+		}
+
 		lineCount++;
 	}
 
