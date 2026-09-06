@@ -3,48 +3,51 @@
 	written by misterbob
 	you are free to use and modify this but PLEASE credit me (at least retain the name in some way)
 
-	**** INSTRUCTION SEMANTICS ****
-	(instructions are in order of hex code)
-		
-		NOP: does nothing
+	** read all of the docs before using as they contain some important tidbits **
 
-		ADD (normal normal):		r[dst]  = r[src1] + r[src2]
+	**** INSTRUCTION SEMANTICS ****
+	(instructions are in order of opcode, nop is 0, add is 1, etc.)
+	(instructions with a * change condition codes)
+		
+		NOP: does nothing other than increment pc
+
+		*ADD (normal normal):		r[dst]  = r[src1] + r[src2]
 		ex. add r0 r1 r2
 
-		ADD (normal immediate): 	r[dst]  = r[src1] + imm[4]
+		*ADD (normal immediate): 	r[dst]  = r[src1] + imm[4]
 		ex. add r0 r1 4
 
-		ADD (in place normal): 		r[dst] += r[src1]
+		*ADD (in place normal): 	r[dst] += r[src1]
 		ex. add r0 r1
 
-		ADD (in place immediate): 	r[dst] += imm[7]
+		*ADD (in place immediate): 	r[dst] += imm[7]
 		ex. add r0 4
 
-		AND (normal normal): 		r[dst]  = r[src1] & r[src2]
+		*AND (normal normal): 		r[dst]  = r[src1] & r[src2]
 		ex. and r0 r1 r2
 
-		AND (normal immediate): 	r[dst]  = r[src1] & imm[4]
+		*AND (normal immediate): 	r[dst]  = r[src1] & imm[4]
 		ex. and r0 r1 4
 
-		AND (in place normal): 		r[dst] &= r[src1]
+		*AND (in place normal): 	r[dst] &= r[src1]
 		ex. and r0 r1
 
-		AND (in place immediate): 	r[dst] &= imm[7]
+		*AND (in place immediate): 	r[dst] &= imm[7]
 		ex. and r0 4
 
-		NOT (normal): 		 r[dst] = !r[src]
+		*NOT (normal): 		 	r[dst] = !r[src]
 		ex. not r0 r1
 
-		NOT (immediate): 	!r[dst]
+		*NOT (immediate): 	!r[dst]
 		ex. not r1
 
-		LD:  r[dst] <= memory[pc + imm[9]]
+		*LD:  r[dst] <= memory[pc + imm[9]]
 		ex. ld r0 15
 
-		LDI: r[dst] <= memory[memory[pc + imm[9]]
+		*LDI: r[dst] <= memory[memory[pc + imm[9]]
 		ex. ldi r0 15
 
-		LDR: r[dst] <= memory[r[src] + imm[6]]
+		*LDR: r[dst] <= memory[r[src] + imm[6]]
 		ex. ldr r0 r1 15
 
 		ST:  r[src] => memory[pc + imm[9]]
@@ -69,7 +72,7 @@
 		JSRR: r[7] = pc, pc  = r[src]
 		ex. jsrr r0
 
-		LEA: r[src] = pc
+		*LEA: r[src] = pc
 		ex. lea r0
 
 		RET: pc = r[7]
@@ -88,6 +91,11 @@
 	strings are NOT packed!!!
 	pc is *always* incremented at the start of execution, so instructions that change or use pc such as jmp will use the incremented pc as the base
 	sext stands for sign extend and not anything else
+	you MUST include trap 0 to halt the program somewhere or else it'll crash
+	condition codes are set after instructions with *, so if the result of an instruction with an * is:
+		negative 	-> n bit is set
+		zero 		-> z bit is set
+		positive	-> p bit is set
 */
 
 #include <stdio.h>
