@@ -770,7 +770,7 @@ int assemble() {
 				return -4;
 			}
 
-			size_t l = strlen(tokens[2]);
+			size_t l = strlen(tokens[1]);
 			if (l > 3 || l == 0) {
 				printf("Wrong tokens on line %d!\n", lineCount);
 				return -3;
@@ -778,11 +778,11 @@ int assemble() {
 
 			int conditionCodes = 0;
 			for (int i = 0; i < l; i++) {
-				if (tokens[2][i] == 'n') {
+				if (tokens[1][i] == 'n') {
 					conditionCodes |= 0b100;
-				} else if (tokens[2][i] == 'z') {
+				} else if (tokens[1][i] == 'z') {
 					conditionCodes |= 0b010;
-				} else if (tokens[2][i] == 'p') {
+				} else if (tokens[1][i] == 'p') {
 					conditionCodes |= 0b001;
 				}
 			}
