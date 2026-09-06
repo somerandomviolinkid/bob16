@@ -1,0 +1,5 @@
+ld r0 2
+trap 2
+trap 0
+.fill 0x0004
+.stringz bob
