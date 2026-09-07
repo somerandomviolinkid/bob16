@@ -163,9 +163,9 @@ struct ram_t {
 	reg_t mdr;
 } ram;
 
-int sext(uint16_t val, uint16_t length) {
+int sext(int16_t val, uint16_t length) {
 	int n = 16 - length;
-	return (val << n) >> n;
+	return (int16_t)((val << n)) >> n;
 }
 
 void updateCC(int16_t val) {
