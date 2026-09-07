@@ -387,19 +387,18 @@ void cpuCycle() {
 
 int parseReg(const char* s) {
 	if (!s) {
+		//string doesn't exist
 		return -1;
 	}
 
-	if (strlen(s) != 2) {
+	if (strlen(s) != 2 || s[0] != 'R' && s[0] != 'r') {
+		//incorrect format
 		return -2;
 	}
 
-	if (s[0] != 'R' && s[0] != 'r') {
-		return -3;
-	}
-
 	if (s[1] < '0' || s[1] > '7') {
-		return -4;
+		//out of bounds
+		return -3;
 	}
 
 	return s[1] - '0';
@@ -489,14 +488,14 @@ int assemble() {
 				int dst = parseReg(tokens[1]);
 				int src0 = parseReg(tokens[2]);
 				int src1 = parseReg(tokens[3]);
-				if (dst == -1 || src1 == -1) {
+				if (dst < 0 || src1 < 0) {
 					printf("Wrong tokens on line %d!\n", lineCount);
 					return -3;
 				}
 
 				instruction += (dst << 9);
 				instruction += (src0 << 4);
-				if (src0 == -1) { //imm
+				if (src0 < 0) { //imm
 					instruction += (1 << 7);
 					int imm = atoi(tokens[3]);
 					if (imm > 7) {
@@ -515,15 +514,15 @@ int assemble() {
 			} else if (tokenCount == 3) { //in place
 				int dst = parseReg(tokens[1]);
 				int src = parseReg(tokens[2]);
-				if (dst == -1) {
+				if (dst < 0) {
 					printf("Wrong tokens on line %d!\n", lineCount);
 					return -3;
 				}
 
-				instruction += (dst << 7);
-				if (src == -1) { //imm
-					instruction += (3 << 10);
-					int imm = atoi(tokens[1]);
+				instruction += (dst << 9);
+				if (src < 0) { //imm
+					instruction += (4 << 7);
+					int imm = atoi(tokens[2]);
 					if (imm > 63) {
 						imm = 63;
 					}
@@ -534,7 +533,7 @@ int assemble() {
 
 					instruction += imm & 0x7F;
 				} else { //normal
-					instruction += (2 << 10);
+					instruction += (3 << 7);
 					instruction += (src << 4);
 				}
 
@@ -550,15 +549,15 @@ int assemble() {
 				int r0 = parseReg(tokens[1]);
 				int r1 = parseReg(tokens[2]);
 				int r2 = parseReg(tokens[3]);
-				if (r0 == -1 || r1 == -1) {
+				if (r0 < 0 || r1 < 0) {
 					printf("Wrong tokens on line %d!\n", lineCount);
 					return -3;
 				}
 
-				instruction += (r0 << 7);
+				instruction += (r0 << 9);
 				instruction += (r1 << 4);
-				if (r2 == -1) { //imm
-					instruction += (1 << 10);
+				if (r2 < 0) { //imm
+					instruction += (1 << 7);
 					int imm = atoi(tokens[3]);
 					if (imm > 7) {
 						imm = 7;
@@ -576,15 +575,15 @@ int assemble() {
 			} else if (tokenCount == 3) { //in place
 				int r0 = parseReg(tokens[1]);
 				int r1 = parseReg(tokens[2]);
-				if (r0 == -1) {
+				if (r0 < 0) {
 					printf("Wrong tokens on line %d!\n", lineCount);
 					return -3;
 				}
 
 				instruction += (r0 << 7);
-				if (r1 == -1) { //imm
-					instruction += (3 << 10);
-					int imm = atoi(tokens[1]);
+				if (r1 < 0) { //imm
+					instruction += (4 << 10);
+					int imm = atoi(tokens[2]);
 					if (imm > 63) {
 						imm = 63;
 					}
@@ -595,7 +594,7 @@ int assemble() {
 
 					instruction += imm & 0x7F;
 				} else { //normal
-					instruction += (2 << 10);
+					instruction += (3 << 7);
 					instruction += (r1 << 4);
 				}
 
@@ -609,14 +608,14 @@ int assemble() {
 
 			int r0 = parseReg(tokens[1]);
 			int r1 = parseReg(tokens[2]);
-			if (r0 == -1) {
+			if (r0 < 0) {
 				printf("Wrong tokens on line %d!\n", lineCount);
 				return -3;
 			}
 
-			instruction += (r0 << 8);
-			if (r1 == -1) { //imm
-				instruction += (1 << 11);
+			instruction += (r0 << 9);
+			if (r1 < 0) { //imm
+				instruction += (1 << 8);
 			} else { //normal
 				instruction += (r1 << 5);
 			}
