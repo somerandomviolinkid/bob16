@@ -440,6 +440,11 @@ int assemble() {
 			token = strtok(NULL, " \t\n");
 		}
 
+		if (tokenCount == 0) {
+			lineCount++;
+			continue;
+		}
+
 		if (strcmp(tokens[0], ".fill") == 0) {
 			if (tokenCount != 2) {
 				printf("Wrong amount of tokens on line %d!\n", lineCount);
