@@ -85,6 +85,13 @@
 
 		ex. trap 0
 
+	**** REGISTERS ****
+	r0...r7: general purpose registers (r0 is usually used as an argument for trap calls, r7 is used for return addresses)
+	accumulator: register inside alu that stores results of arithmetic and logical operations
+	ir (instruction register): stores the current instruction the cpu is executing
+	pc (program counter): stores the memory address of the NEXT instruction to execute (gets incremented during fetch phase of execution, so keep in mind anything using pc-relative addressing will be using the incremented pc)
+	cc: 3 bit flags which consist of n (negative), z (zero), and p (positive), are changed whenever an instruction modifies a general purpose register
+
 	**** NOTES ****
 	any immediate values in assembly will clamp to be within bounds, e.g. for ADD normal immediate, if you put 60 as the immediate value it will clamp to 15
 	any unused bits in a machine code instruction will be set to 0
