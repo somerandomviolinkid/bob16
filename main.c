@@ -404,6 +404,7 @@ int assemble() {
 	FILE* file;
 	char fileName[256];
 
+	setbuf(stdout, NULL);
 	printf("Enter source assembly file name: \n");
 	fgets(fileName, 256, stdin);
 	fileName[strcspn(fileName, "\n")] = '\0';
