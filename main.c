@@ -304,7 +304,7 @@ void execute() {
 			break;
 		case JSR:
 			cpu.regFile[7] = cpu.pc;
-			if (!(cpu.ir & 0x400)) {
+			if (!(cpu.ir & 0x800)) {
 				cpu.pc += sext(cpu.ir & 0x7FF, 11);
 			} else {
 				cpu.pc = cpu.regFile[(cpu.ir >> 8) & 0x7];
@@ -821,12 +821,12 @@ int assemble() {
 			}
 
 			int r0 = parseReg(tokens[1]);
-			if (r0 == -1) {
+			if (r0 < 0) {
 				printf("Wrong tokens on line %d!\n", lineCount);
 				return -3;
 			}
 
-			instruction += ((r0 & 0x7) << 6);
+			instruction += ((r0 & 0x7) << 9);
 
 		} else if (strcmp(tokens[0], "jsr") == 0) {
 			instruction += (12 << 12);
@@ -857,7 +857,7 @@ int assemble() {
 			}
 
 			int r0 = parseReg(tokens[2]);
-			if (r0 == -1) {
+			if (r0 < 0) {
 				printf("Wrong tokens on line %d!\n", lineCount);
 				return -3;
 			}
@@ -873,7 +873,7 @@ int assemble() {
 			}
 
 			int r0 = parseReg(tokens[1]);
-			if (r0 == -1) {
+			if (r0 < 0) {
 				printf("Wrong tokens on line %d!\n", lineCount);
 				return -3;
 			}
