@@ -199,7 +199,7 @@ void execute() {
 		case NOP:
 			break;
 		case ADD:
-			switch ((cpu.ir >> 7) & 0x7) {
+			switch ((cpu.ir >> 7) & 0x3) {
 				case 0:
 					if (cpu.ir & 0b1) {
 						printf("bad instruction: %X\n at memory address %X\n", cpu.ir, ram.memory[cpu.pc - 1]);
@@ -226,7 +226,7 @@ void execute() {
 
 			break;
 		case AND:
-			switch ((cpu.ir >> 7) & 0x7) {
+			switch ((cpu.ir >> 7) & 0x3) {
 				case 0:
 					if (cpu.ir & 0x1) {
 						printf("bad instruction: %X\n at memory address %X\n", cpu.ir, ram.memory[cpu.pc - 1]);
@@ -258,10 +258,10 @@ void execute() {
 				exit(-1);
 			}
 
-			if (!(cpu.ir & 0x100)) {
-				cpu.alu.accumulator = !cpu.regFile[(cpu.ir >> 5) & 0x7];
+			if (cpu.ir & 0x100) {
+				cpu.alu.accumulator = ~cpu.regFile[(cpu.ir >> 9) & 0x7];
 			} else {
-				cpu.alu.accumulator = !cpu.regFile[(cpu.ir >> 9) & 0x7];
+				cpu.alu.accumulator = ~cpu.regFile[(cpu.ir >> 5) & 0x7];
 			}
 
 			break;
