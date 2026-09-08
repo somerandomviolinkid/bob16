@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/bob16.dir/link.d CMakeFiles/bob16.dir/src/main.c.o -o bob16
