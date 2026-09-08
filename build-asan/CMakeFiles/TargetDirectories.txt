@@ -1,3 +1,0 @@
-/home/Auth/Projects/bob16/build-asan/CMakeFiles/bob16.dir
-/home/Auth/Projects/bob16/build-asan/CMakeFiles/edit_cache.dir
-/home/Auth/Projects/bob16/build-asan/CMakeFiles/rebuild_cache.dir
