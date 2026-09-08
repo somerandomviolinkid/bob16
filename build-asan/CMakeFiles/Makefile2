@@ -85,12 +85,12 @@ clean: CMakeFiles/bob16.dir/clean
 CMakeFiles/bob16.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bob16.dir/build.make CMakeFiles/bob16.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bob16.dir/build.make CMakeFiles/bob16.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Auth/Projects/bob16/build-asan/CMakeFiles --progress-num=1,2 "Built target bob16"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Auth/Projects/bob16/build-asan/CMakeFiles --progress-num=1,2,3,4 "Built target bob16"
 .PHONY : CMakeFiles/bob16.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/bob16.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/Auth/Projects/bob16/build-asan/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Auth/Projects/bob16/build-asan/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/bob16.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/Auth/Projects/bob16/build-asan/CMakeFiles 0
 .PHONY : CMakeFiles/bob16.dir/rule
@@ -102,7 +102,7 @@ bob16: CMakeFiles/bob16.dir/rule
 # codegen rule for target.
 CMakeFiles/bob16.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bob16.dir/build.make CMakeFiles/bob16.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Auth/Projects/bob16/build-asan/CMakeFiles --progress-num=1,2 "Finished codegen for target bob16"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Auth/Projects/bob16/build-asan/CMakeFiles --progress-num=1,2,3,4 "Finished codegen for target bob16"
 .PHONY : CMakeFiles/bob16.dir/codegen
 
 # clean rule for target.

@@ -1,5 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/bob16.dir/link.d"
+  "CMakeFiles/bob16.dir/src/assembler.c.o"
+  "CMakeFiles/bob16.dir/src/assembler.c.o.d"
+  "CMakeFiles/bob16.dir/src/cpu.c.o"
+  "CMakeFiles/bob16.dir/src/cpu.c.o.d"
   "CMakeFiles/bob16.dir/src/main.c.o"
   "CMakeFiles/bob16.dir/src/main.c.o.d"
   "bob16"

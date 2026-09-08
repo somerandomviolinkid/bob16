@@ -129,6 +129,54 @@ bob16/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bob16.dir/build.make CMakeFiles/bob16.dir/build
 .PHONY : bob16/fast
 
+src/assembler.o: src/assembler.c.o
+.PHONY : src/assembler.o
+
+# target to build an object file
+src/assembler.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bob16.dir/build.make CMakeFiles/bob16.dir/src/assembler.c.o
+.PHONY : src/assembler.c.o
+
+src/assembler.i: src/assembler.c.i
+.PHONY : src/assembler.i
+
+# target to preprocess a source file
+src/assembler.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bob16.dir/build.make CMakeFiles/bob16.dir/src/assembler.c.i
+.PHONY : src/assembler.c.i
+
+src/assembler.s: src/assembler.c.s
+.PHONY : src/assembler.s
+
+# target to generate assembly for a file
+src/assembler.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bob16.dir/build.make CMakeFiles/bob16.dir/src/assembler.c.s
+.PHONY : src/assembler.c.s
+
+src/cpu.o: src/cpu.c.o
+.PHONY : src/cpu.o
+
+# target to build an object file
+src/cpu.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bob16.dir/build.make CMakeFiles/bob16.dir/src/cpu.c.o
+.PHONY : src/cpu.c.o
+
+src/cpu.i: src/cpu.c.i
+.PHONY : src/cpu.i
+
+# target to preprocess a source file
+src/cpu.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bob16.dir/build.make CMakeFiles/bob16.dir/src/cpu.c.i
+.PHONY : src/cpu.c.i
+
+src/cpu.s: src/cpu.c.s
+.PHONY : src/cpu.s
+
+# target to generate assembly for a file
+src/cpu.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bob16.dir/build.make CMakeFiles/bob16.dir/src/cpu.c.s
+.PHONY : src/cpu.c.s
+
 src/main.o: src/main.c.o
 .PHONY : src/main.o
 
@@ -162,6 +210,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... bob16"
+	@echo "... src/assembler.o"
+	@echo "... src/assembler.i"
+	@echo "... src/assembler.s"
+	@echo "... src/cpu.o"
+	@echo "... src/cpu.i"
+	@echo "... src/cpu.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

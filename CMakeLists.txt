@@ -13,10 +13,10 @@ if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
     add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 endif()
 
-# Define the target
-add_executable(bob16 src/main.c)
+add_executable(bob16 src/main.c src/cpu.c src/assembler.c)
 
-# Configure build-type options for the bob16 target
+target_include_directories(bob16 PRIVATE include)
+
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     message(STATUS "Configuring Debug build (Sanitizers enabled, -O0, -g)")
     target_compile_options(bob16 PRIVATE -fsanitize=address -fsanitize=undefined -g -O0)

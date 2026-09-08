@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/Auth/Projects/bob16/src/assembler.c" "CMakeFiles/bob16.dir/src/assembler.c.o" "gcc" "CMakeFiles/bob16.dir/src/assembler.c.o.d"
+  "/home/Auth/Projects/bob16/src/cpu.c" "CMakeFiles/bob16.dir/src/cpu.c.o" "gcc" "CMakeFiles/bob16.dir/src/cpu.c.o.d"
   "/home/Auth/Projects/bob16/src/main.c" "CMakeFiles/bob16.dir/src/main.c.o" "gcc" "CMakeFiles/bob16.dir/src/main.c.o.d"
   "" "bob16" "gcc" "CMakeFiles/bob16.dir/link.d"
   )
