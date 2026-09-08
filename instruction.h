@@ -1,0 +1,23 @@
+#ifndef BOB16_INSTRUCTIONS_H
+#define BOB16_INSTRUCTIONS_H
+
+typedef enum INSTRUCTION_E {
+	NOP,
+	ADD,
+	AND,
+	NOT,
+	LD,
+	LDI,
+	LDR,
+	ST,
+	STI,
+	STR,
+	BR,
+	JMP,
+	JSR,
+	LEA,
+	RET,
+	TRAP
+} INSTRUCTION;
+
+#endif
