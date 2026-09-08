@@ -93,3 +93,11 @@ condition codes are set after instructions with *, so if the result of an instru
 negative 	-> n bit is set\
 zero 		-> z bit is set\
 positive	-> p bit is set
+
+# How to run
+
+Use the command `make` to build the emulator/assembler, use `make run` to build and run the emulator/assembler, and use `make clean` to clean the build directory.
+
+# Examples
+
+Examples are stored in the `examples/` directory. Currently there is only the `demo.basm` file which prints out the string `bob`.
