@@ -111,6 +111,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef uint16_t ureg_t;
 typedef int16_t reg_t;
 
 typedef enum INSTRUCTION_E {
@@ -151,15 +152,15 @@ typedef struct alu_t {
 
 struct cpu_t {
 	reg_t regFile[8];
-	reg_t ir;
-	reg_t pc;
+	ureg_t ir;
+	ureg_t pc;
 	bool cc[3];
 	alu_t alu;
 } cpu;
 
 struct ram_t {
 	int16_t memory[0x10000];
-	reg_t mar;
+	ureg_t mar;
 	reg_t mdr;
 } ram;
 
