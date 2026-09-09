@@ -243,7 +243,7 @@ void execute() {
 					cpu.alu.accumulator = cpu.regFile[(cpu.ir >> 4) & 0x7] & cpu.regFile[(cpu.ir >> 1) & 0x7];
 					break;
 				case 1:
-					cpu.alu.accumulator = cpu.regFile[(cpu.ir >> 4) & 0x7] & sext(cpu.ir & 0x1, 4);
+					cpu.alu.accumulator = cpu.regFile[(cpu.ir >> 4) & 0x7] & sext(cpu.ir & 0xF, 4);
 					break;
 				case 2:
 					if (cpu.ir & 0x1F) {
