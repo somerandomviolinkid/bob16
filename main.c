@@ -929,6 +929,7 @@ int assemble() {
 
 		lineCount++;
 	}
+ fclose(file);
 
 	printf("Starting execution!\n");
 	return 0;
