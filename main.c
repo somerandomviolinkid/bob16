@@ -344,7 +344,7 @@ void execute() {
 					
 					cpu.pc = cpu.regFile[7];
 					break;
-				case GETS:
+				case GETS: {
 					int n = cpu.regFile[1];
 					cpu.regFile[7] = cpu.pc;
 					char buf[n];
@@ -355,6 +355,7 @@ void execute() {
 
 					cpu.pc = cpu.regFile[7];
 					break;
+				}
 			}
 
 			break;
