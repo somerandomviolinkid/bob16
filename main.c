@@ -367,16 +367,14 @@ void storeResult() {
 	int dest = (cpu.ir >> 9) & 0x7;
 	if (opcode == LD || opcode == LDI || opcode == LDR) {
 		cpu.regFile[dest] = ram.mdr;
-		updateCC(cpu.regFile[dest]);
 	} else if (opcode == ST || opcode == STI || opcode == STR) {
 		ram.memory[ram.mar] = cpu.regFile[dest];
 	} else if (opcode == ADD || opcode == AND || opcode == NOT) {
 		cpu.regFile[dest] = cpu.alu.accumulator;
-		updateCC(cpu.regFile[dest]);
 	} else if (opcode == LEA) {
 		cpu.regFile[dest] = ram.mar;
-		updateCC(cpu.regFile[dest]);
 	}
+	updateCC(cpu.regFile[dest]);
 }
 
 void cpuCycle() {
