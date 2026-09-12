@@ -344,7 +344,7 @@ void execute() {
 					
 					cpu.pc = cpu.regFile[7];
 					break;
-				case GETS:
+				case GETS: {
 					int n = cpu.regFile[1];
 					cpu.regFile[7] = cpu.pc;
 					char buf[n];
@@ -355,6 +355,7 @@ void execute() {
 
 					cpu.pc = cpu.regFile[7];
 					break;
+				}
 			}
 
 			break;
@@ -366,16 +367,14 @@ void storeResult() {
 	int dest = (cpu.ir >> 9) & 0x7;
 	if (opcode == LD || opcode == LDI || opcode == LDR) {
 		cpu.regFile[dest] = ram.mdr;
-		updateCC(cpu.regFile[dest]);
 	} else if (opcode == ST || opcode == STI || opcode == STR) {
 		ram.memory[ram.mar] = cpu.regFile[dest];
 	} else if (opcode == ADD || opcode == AND || opcode == NOT) {
 		cpu.regFile[dest] = cpu.alu.accumulator;
-		updateCC(cpu.regFile[dest]);
 	} else if (opcode == LEA) {
 		cpu.regFile[dest] = ram.mar;
-		updateCC(cpu.regFile[dest]);
 	}
+	updateCC(cpu.regFile[dest]);
 }
 
 void cpuCycle() {
@@ -929,6 +928,7 @@ int assemble() {
 
 		lineCount++;
 	}
+ 	fclose(file);
 
 	printf("Starting execution!\n");
 	return 0;
